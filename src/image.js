@@ -1,10 +1,10 @@
 /** @license
  * RequireJS Image Plugin
  * Author: Miller Medeiros
- * Version: 0.1.0 (2011/10/26)
+ * Version: 0.1.1 (2011/10/26)
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
-(function(){
+define(function(){
 
     var CACHE_BUST_QUERY_PARAM = 'bust',
         CACHE_BUST_FLAG = '!bust';
@@ -15,9 +15,7 @@
         return url + CACHE_BUST_QUERY_PARAM +'='+ Math.abs(2147483647 * Math.random());
     }
 
-    //as of RequireJS 0.22 - define method for plugins needs to be a literal object
-    //to be able to work together with the optimizer (see: https://github.com/jrburke/requirejs/issues#issue/70)
-    define({
+    return {
         load : function(name, req, onLoad, config){
             var img;
             if(config.isBuild){
@@ -35,6 +33,6 @@
             //used normalize to avoid caching references to a "cache busted" request.
             return (name.indexOf(CACHE_BUST_FLAG) < 0)? name : cacheBust(name);
         }
-    });
+    };
 
-}());
+});
