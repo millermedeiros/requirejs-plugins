@@ -21,6 +21,7 @@
         <script src="../lib/require.js"></script>
         <script>
             require({
+                waitSeconds : 45, //make sure it is enough to load all gmaps scripts
                 paths : {
                     async : '../src/async' //alias to plugin
                 }
@@ -42,7 +43,7 @@
                         style: google.maps.NavigationControlStyle.SMALL
                     }
                 });
-                
+
             });
 
         </script>
