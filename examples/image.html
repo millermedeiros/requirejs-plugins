@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RequireJS image plugin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>RequireJS image plugin</h1>
+            <p>Note that <code>waitSeconds</code> should be large enough to load all the images, otherwise module may timeout.</p>
+            <p>Use this plugin only on specific cases and make sure you set a large <a href="http://requirejs.org/docs/api.html#config">waitSeconds</a> (default is 7 seconds).</p>
+        </div>
+        <script src="../lib/require.js"></script>
+        <script>
+            require.config({
+                waitSeconds : 45, //should be enough to load images
+                paths : {
+                    image : '../src/image' //alias to plugin
+                }
+            });
+
+            /*
+             * - Image paths are relative to the HTML file.
+             * - Support absolute paths as well.
+             * - Appending `!bust` to the end of the file name will avoid caching the image.
+             */
+            require([
+                'image!img/lol_cat.jpg',
+                'image!http://30.media.tumblr.com/tumblr_lgd1neNYSL1qbwkzvo1_500.jpg',
+                'image!img/bike.jpg!bust',
+                'image!img/bike.jpg!bust',
+                'image!img/lol_cat.jpg'
+            ], function(cat, awesome, bike1, bike2, sameCat){
+                var wrapper = document.getElementById('wrapper');
+
+                //add loaded images to the document!
+                //returns an Image object..
+                wrapper.appendChild(awesome);
+                wrapper.appendChild(cat);
+
+                //requireJS will return same image object unless you use `!bust`
+
+                var sameBike = document.createElement('div');
+                sameBike.innerHTML = 'Is same bike cat? : '+ (bike1 === bike2);
+                wrapper.appendChild(sameBike);
+
+                wrapper.appendChild(bike1);
+                wrapper.appendChild(bike2);
+
+                var sameLol = document.createElement('div');
+                sameLol.innerHTML = 'Is same lol cat? : '+ (cat === sameCat);
+                wrapper.appendChild(sameLol);
+
+                //so we need to "deep-clone" the Element to be able
+                //to insert it multiple times into the same document
+
+                //wrapper.appendChild(sameCat.cloneNode(true)); //insert a clone of the image
+                wrapper.appendChild(sameCat);//swap image position
+            });
+        </script>
+    </body>
+</html>
