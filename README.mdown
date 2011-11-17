@@ -3,6 +3,8 @@
 Small set of plugins for [RequireJS](http://requirejs.org). Some plugins may
 also work on other AMD loaders (never tested it).
 
+For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wiki/Plugins).
+
 
 ## Plugins
 
@@ -54,6 +56,7 @@ Check [RequireJS documentation](http://requirejs.org/docs/plugins.html) for
 a basic reference and use other plugins as reference. RequireJS official
 plugins are a good source for learning.
 
+Also be sure to check [RequireJS Wiki](https://github.com/jrburke/requirejs/wiki/Plugins).
 
 ## Author
 
