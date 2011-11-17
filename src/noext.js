@@ -7,7 +7,7 @@
  * Released under the WTFPL <http://sam.zoy.org/wtfpl/>
  */
 define(function(){
-    
+
     var QUERY_PARAM = 'noext';
 
     //API

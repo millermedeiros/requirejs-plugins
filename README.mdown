@@ -10,7 +10,7 @@ For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wik
 
  - **image** : Load image files as dependencies. Option to "cache bust".
  - **json** : Load JSON files and parses the result. (Requires `text!` plugin).
- - **async** : Useful for JSONP and asynchronous code (e.g. Google Maps).
+ - **async** : Useful for JSONP and asynchronous dependencies (e.g. Google Maps).
  - **noext** : Load scripts without appending ".js" extension, useful for
    dynamic scripts.
 

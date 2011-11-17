@@ -1,7 +1,7 @@
 /** @license
  * RequireJS Image Plugin
  * Author: Miller Medeiros
- * Version: 0.1.1 (2011/10/26)
+ * Version: 0.1.2 (2011/11/17)
  * Released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 define(function(){
@@ -12,7 +12,7 @@ define(function(){
     function cacheBust(url){
         url = url.replace(CACHE_BUST_FLAG, '');
         url += (url.indexOf('?') < 0)? '?' : '&';
-        return url + CACHE_BUST_QUERY_PARAM +'='+ Math.abs(2147483647 * Math.random());
+        return url + CACHE_BUST_QUERY_PARAM +'='+ Math.round(2147483647 * Math.random());
     }
 
     return {
