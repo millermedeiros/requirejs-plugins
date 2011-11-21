@@ -1,7 +1,7 @@
 /** @license
  * RequireJS plugin for loading Google Ajax API modules thru `google.load`
  * Author: Miller Medeiros
- * Version: 0.1.0 (2011/11/21)
+ * Version: 0.1.1 (2011/11/21)
  * Released under the WTFPL
  */
 define(['async'], function () {
@@ -20,14 +20,18 @@ define(['async'], function () {
 
     return {
         load : function(name, req, onLoad, config){
-            var data = parseName(name);
+            if (config.isBuild) {
+                onLoad(null); //avoid errors on the optimizer
+            } else {
+                var data = parseName(name);
 
-            req(['async!'+ document.location.protocol +'//www.google.com/jsapi'], function(){
-                google.load(data.moduleName, data.version, {
-                    packages : data.packages,
-                    callback : onLoad
+                req(['async!'+ document.location.protocol +'//www.google.com/jsapi'], function(){
+                    google.load(data.moduleName, data.version, {
+                        packages : data.packages,
+                        callback : onLoad
+                    });
                 });
-            });
+            }
         }
     };
 
