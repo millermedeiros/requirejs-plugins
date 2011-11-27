@@ -2,7 +2,7 @@
  * RequireJS plugin for loading Google Ajax API modules thru `google.load`
  * Author: Miller Medeiros
  * Version: 0.1.1 (2011/11/21)
- * Released under the WTFPL
+ * Released under the MIT license
  */
 define(['async'], function () {
 

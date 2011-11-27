@@ -4,7 +4,7 @@
  * IMPORTANT: it only works on r.js optimizer after version 0.26+ 20011/09/27
  * Author: Miller Medeiros
  * Version: 0.1.0 (2011/06/10)
- * Released under the WTFPL
+ * Released under the MIT license
  */
 define(['text'], function(text){
 

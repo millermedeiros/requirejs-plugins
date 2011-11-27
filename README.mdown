@@ -10,7 +10,9 @@ For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wik
 ## Plugins
 
  - **async** : Useful for JSONP and asynchronous dependencies (e.g. Google Maps).
- - **goog** : Load Google APIs asynchronously (requires `async!` plugin).
+ - **font** : Load web fonts using the [WebFont Loader API](https://code.google.com/apis/webfonts/docs/webfont_loader.html)
+   (requires `decodeQuery` module from [amd-utils](http://millermedeiros.github.com/amd-utils/))
+ - **goog** : Load [Google APIs](http://code.google.com/apis/loader/) asynchronously (requires `async!` plugin).
  - **image** : Load image files as dependencies. Option to "cache bust".
  - **json** : Load JSON files and parses the result. (Requires `text!` plugin).
  - **noext** : Load scripts without appending ".js" extension, useful for
@@ -35,6 +37,7 @@ require.config({
     paths : {
         //create alias to plugins
         async: 'lib/requirejs-plugins/async',
+        font: 'lib/requirejs-plugins/font',
         goog: 'lib/requirejs-plugins/goog',
         image: 'lib/requirejs-plugins/image',
         json: 'lib/requirejs-plugins/json',
@@ -49,7 +52,8 @@ define([
         'noext!js/bar.php'
         'async!http://maps.google.com/maps/api/js?sensor=false',
         'goog!visualization,1,[corechart,geochart]',
-        'goog!search,1'
+        'goog!search,1',
+        'font!vendor=google&families=[Tangerine,Cantarell]'
     ], function(awsum, foo, bar){
         //all dependencies are loaded (including gmaps and other google apis)
     }
@@ -75,4 +79,4 @@ Also be sure to check [RequireJS Wiki](https://github.com/jrburke/requirejs/wiki
 
 ## License
 
-All the plugins are released under the [WTFPL](http://sam.zoy.org/wtfpl/).
+All the plugins are released under the MIT license.
