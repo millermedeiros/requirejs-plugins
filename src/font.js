@@ -1,14 +1,12 @@
 /** @license
  * RequireJS plugin for loading web fonts using the WebFont Loader
  * Author: Miller Medeiros
- * Version: 0.1.0 (2011/11/27)
+ * Version: 0.1.1 (2011/11/28)
  * Released under the MIT license
  */
 define(['amd-utils/queryString/decodeQuery'], function (decodeQuery) {
 
-    var rStringArray = /^\[([^\]]+)\]$/, // match "[foo,bar]" capturing "foo,bar"
-        PROTOCOL = (document.location.protocol === 'https:')? 'https' : 'http',
-        WEB_FONT_LOADER_URL = PROTOCOL +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    var rStringArray = /^\[([^\]]+)\]$/; // match "[foo,bar]" capturing "foo,bar"
 
     function parseName(name) {
         var data = {},
@@ -54,7 +52,7 @@ define(['amd-utils/queryString/decodeQuery'], function (decodeQuery) {
                 data.inactive = function(){
                     onLoad(false);
                 };
-                req([WEB_FONT_LOADER_URL], function(){
+                req([(document.location.protocol === 'https:'? 'https' : 'http') +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'], function(){
                     WebFont.load(data);
                 });
             }
