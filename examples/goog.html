@@ -15,6 +15,9 @@
                 <p>
                 This plugin depends on the Async plugin and loads files using the <code>google.load</code> method from the <a href="http://code.google.com/apis/loader/">Google Loader</a>.
                 </p>
+                <p>
+                Notice that it can only load the libraries listed on the <a href="http://code.google.com/apis/loader/#AvailableAPIs">Available APIs section</a>.
+                </p>
             </div>
             <h2>Google Charts - corechart</h2>
             <div id="chart_div"></div>
@@ -31,13 +34,14 @@
                 paths : {
                     //alias to plugins
                     async : '../src/async',
-                    goog : '../src/goog'
+                    goog : '../src/goog',
+                    propertyParser : '../src/propertyParser'
                 }
             });
 
 
-            //To load google libraries you should follow the format "goog!moduleName,version,[packages]"
-            require(['goog!visualization,1,[corechart,geochart]', 'goog!search,1'], function(){
+            //To load google libraries you should follow the format "goog!moduleName,version,packages:[packages],language:en,anotherOption:value"
+            require(['goog!visualization,1,packages:[corechart,geochart]', 'goog!search,1'], function(){
 
                 // visualization + corechart + geochart + search are loaded
 
