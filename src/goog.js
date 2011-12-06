@@ -1,12 +1,12 @@
 /** @license
  * RequireJS plugin for loading Google Ajax API modules thru `google.load`
  * Author: Miller Medeiros
- * Version: 0.1.2 (2011/11/28)
+ * Version: 0.1.3 (2011/12/05)
  * Released under the MIT license
  */
 define(['async'], function () {
 
-    var rParts = /^(^\w+)(?:,([^,]+))?(?:,\[([^\]]+)\])?/;
+    var rParts = /^([^,]+)(?:,([^,]+))?(?:,\[([^\]]+)\])?/;
 
     function parseName(name){
         var match = rParts.exec(name),
