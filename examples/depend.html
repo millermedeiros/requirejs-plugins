@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RequireJS depend plugin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>RequireJS depend plugin</h1>
+            <p>
+                Plugin to load JS files that have dependencies but aren't wrapped into <code>define</code> calls.
+            </p>
+            <p>
+                Syntax: <code>depend!name[dependency,anotherDependency,...]</code>
+            </p>
+            <p>
+                If dependencies should be loaded in order add <code>order!</code>
+                before depency name. (so it will load dependencies using the order! plugin) Eg:
+                <code>depend!bar[order!jquery,order!foo]</code>
+            </p>
+            <hr />
+        </div>
+        <script src="../lib/require.js"></script>
+        <script>
+            require.config({
+                baseUrl : 'js/depend',
+                paths : {
+                    jquery : '../jquery',
+                    //alias to plugins
+                    order : '../../../lib/order',
+                    depend : '../../../src/depend'
+                }
+            });
+
+            require([
+                'depend!bar[order!jquery,order!foo]'
+            ], function(){
+                var wrapper = document.getElementById('wrapper');
+
+                var tmp = document.createElement('p');
+                tmp.innerHTML = 'Loaded dependencies and module.';
+                wrapper.appendChild(tmp);
+            });
+        </script>
+    </body>
+</html>
