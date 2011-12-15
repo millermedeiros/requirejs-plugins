@@ -1,7 +1,7 @@
 /** @license
  * RequireJS Image Plugin
  * Author: Miller Medeiros
- * Version: 0.2.0 (2011/12/06)
+ * Version: 0.2.1 (2011/12/15)
  * Released under the MIT license
  */
 define(function(){
@@ -9,6 +9,8 @@ define(function(){
     var CACHE_BUST_QUERY_PARAM = 'bust',
         CACHE_BUST_FLAG = '!bust',
         RELATIVE_FLAG = '!rel';
+
+    function noop(){}
 
     function cacheBust(url){
         url = url.replace(CACHE_BUST_FLAG, '');
@@ -25,7 +27,11 @@ define(function(){
                 img = new Image();
                 img.onload = function(evt){
                     onLoad(img);
-                    delete img.onload; //release memory - suggested by John Hann
+                    try {
+                        delete img.onload; //release memory - suggested by John Hann
+                    } catch(err) {
+                        img.onload = noop; // IE7 :(
+                    }
                 };
                 if (name.indexOf(RELATIVE_FLAG) !== -1) {
                     //load image relative to module path / baseUrl
