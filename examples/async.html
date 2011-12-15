@@ -25,53 +25,79 @@
             <h2>JSONP</h2>
             <div class="info">
                 <p>
-                Note that the async! plugin isn't really required for JSONP calls if the response is an <strong>Object</strong>.
-                        If the response is an Array or String you will need the async! plugin. [<a href="http://requirejs.org/docs/api.html#jsonp">reference</a>]
+                    Note that the async! plugin isn't really required for JSONP calls if the response is an <strong>Object</strong>.
+                    If the response is an Array or String you will need the async! plugin. [<a href="http://requirejs.org/docs/api.html#jsonp">reference</a>]
+                </p>
+                <p>
+                    The default parameter used to set the callback name is <code>callback</code>, you can set a different name
+                    by passing it at the end of the dependency URL preceded by a exclamation mark (<code>!</code>), e.g.: <code>async!http://example.com/?foo=bar!jsoncallback</code>
                 </p>
             </div>
-            <h3><a href="http://twitter.com/millermedeiros">@millermedeiros</a> Twitter feed (JSONP)</h3>
+            <h3><a href="http://twitter.com/millermedeiros">@millermedeiros</a> Twitter feed</h3>
             <div id="twitter-feed"></div>
+            <h3>Flickr feed</h3>
+            <div id="flickr-feed"></div>
         </div>
         <script src="../lib/require.js"></script>
         <script>
             require({
-                waitSeconds : 45, //make sure it is enough to load all gmaps scripts
+                waitSeconds : 15, //make sure it is enough to load all gmaps scripts
                 paths : {
                     async : '../src/async' //alias to plugin
                 }
             });
 
 
-            // you can use a "!callbackName" at the end of the URL 
+            // you can use a "!callbackName" at the end of the URL
             // to specify name of parameter that expects callback function name
             // the default value is "!callback" if not present.
-            require(['async!http://twitter.com/statuses/user_timeline/millermedeiros.json', 'async!http://maps.google.com/maps/api/js?sensor=false'], function(feed){
+            // Notice that flickr uses "!jsoncallback".
+            require(
+                [
+                    'async!http://twitter.com/statuses/user_timeline/millermedeiros.json',
+                    'async!http://api.flickr.com/services/feeds/photos_public.gne?id=27041612@N06&format=json!jsoncallback',
+                    'async!http://maps.google.com/maps/api/js?sensor=false'
+                ],
+                function(feed, photos){
 
-                var feedDiv = document.getElementById('twitter-feed'),
-                    el;
+                    //twitter
 
-                for (var i = 0, n = feed.length; i < n; i += 1) {
-                    el = document.createElement('p');
-                    el.innerHTML = feed[i].text;
-                    feedDiv.appendChild(el);
-                }
-                
+                    var feedDiv = document.getElementById('twitter-feed'),
+                        el;
 
-                //Google maps is available and all components are ready to use.
-
-                var mapDiv = document.getElementById('map-canvas');
-
-                var map = new google.maps.Map(mapDiv, {
-                    center: new google.maps.LatLng(37.4419, -122.1419),
-                    zoom: 13,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP,
-                    navigationControl: true,
-                    navigationControlOptions: {
-                        style: google.maps.NavigationControlStyle.SMALL
+                    for (var i = 0, n = feed.length; i < n; i += 1) {
+                        el = document.createElement('p');
+                        el.innerHTML = feed[i].text;
+                        feedDiv.appendChild(el);
                     }
-                });
 
-            });
+
+
+                    //flickr
+
+                    var flickrDiv = document.getElementById('flickr-feed'),
+                        idx = Math.round((photos.items.length - 1) * Math.random());
+
+                    flickrDiv.innerHTML += photos.items[idx].description;
+
+
+
+                    //Google maps is available and all components are ready to use.
+
+                    var mapDiv = document.getElementById('map-canvas');
+
+                    var map = new google.maps.Map(mapDiv, {
+                        center: new google.maps.LatLng(37.4419, -122.1419),
+                        zoom: 13,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        navigationControl: true,
+                        navigationControlOptions: {
+                            style: google.maps.NavigationControlStyle.SMALL
+                        }
+                    });
+
+                }
+            );
 
         </script>
     </body>
