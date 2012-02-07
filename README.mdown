@@ -18,6 +18,8 @@ For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wik
    asynchronously (requires `async!` plugin and `propertyParser`).
  - **image** : Load image files as dependencies. Option to "cache bust".
  - **json** : Load JSON files and parses the result. (Requires `text!` plugin).
+ - **mdown** : Load Markdown files and parses into HTML. (Requires `text!`
+   plugin and a markdown converter).
  - **noext** : Load scripts without appending ".js" extension, useful for
    dynamic scripts.
 
@@ -51,25 +53,57 @@ require.config({
         image: 'lib/requirejs-plugins/image',
         json: 'lib/requirejs-plugins/json',
         noext: 'lib/requirejs-plugins/noext',
-        propertyParser : 'lib/requirejs-plugins/propertyParser'
+        mdown: 'lib/requirejs-plugins/mdown',
+        propertyParser : 'lib/requirejs-plugins/propertyParser',
+        markdownConverter : 'lib/Markdown.Converter'
     }
 });
 
 //use plugins as if they were at baseUrl
 define([
         'image!awsum.jpg',
-        'json!data/foo.json'
-        'noext!js/bar.php'
+        'json!data/foo.json',
+        'noext!js/bar.php',
+        'mdown!data/lorem_ipsum.md',
         'async!http://maps.google.com/maps/api/js?sensor=false',
         'goog!visualization,1,packages:[corechart,geochart]',
         'goog!search,1',
         'font!google,families:[Tangerine,Cantarell]',
         'depend!foo[order!jquery,order!lib/awsumJqueryPlugin]'
-    ], function(awsum, foo, bar){
+    ], function(awsum, foo, bar, loremIpsum){
         //all dependencies are loaded (including gmaps and other google apis)
     }
 );
 ```
+
+
+## Notes about the Markdown plugin
+
+The Markdown plugin was created mainly to be used to compile the markdown files
+into HTML during the build step, if you set `pragmasOnSave.excludeMdown=true`
+it will remove the `Markdown.Converter.js` and `mdown.js` files from the build.
+Example build settings:
+
+```js
+({
+    baseUrl : './',
+    pragmasOnSave : {
+        excludeMdown : true
+    },
+    paths : {
+        mdown : 'lib/requirejs/mdown',
+        text : 'lib/requirejs/text',
+        markdownConverter : 'lib/Markdown.Converter'
+    },
+    modules : {
+        name : 'main'
+    }
+})
+```
+
+If `excludeMdown=true` you won't be able to load markdown files dynamically
+after the build.
+
 
 
 ## Writing your own plugins
