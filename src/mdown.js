@@ -1,7 +1,7 @@
 /** @license
  * RequireJS plugin for loading Markdown files and converting them into HTML.
  * Author: Miller Medeiros
- * Version: 0.1.0 (2012/02/07)
+ * Version: 0.1.1 (2012/02/17)
  * Released under the MIT license
  */
 
@@ -47,11 +47,13 @@ define(
             write : function(pluginName, moduleName, write){
                 if(moduleName in buildMap){
                     var content = text.jsEscape(buildMap[moduleName]);
-                    write('define("'+ pluginName +'!'+ moduleName +'", function(){ return "'+ content +'";});\n');
+                    write.asModule(pluginName + "!" + moduleName,
+                                   "define(function () { return '" +
+                                       content +
+                                   "';});\n");
                 }
 //>>excludeEnd('excludeMdown')
             }
 
         };
 });
-
