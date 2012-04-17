@@ -10,6 +10,7 @@
             <h1>RequireJS JSON plugin</h1>
             <p>Helper for loading JSON files, it will also work during optimization (wrapping JSON files into a `define` call).</p>
             <p>If you want to load JSONP data use the `async` plugin instead.</p>
+            <p>You can set the flag <code>`!bust`</code> to prevent caching the JSON response, it will append a query argument <code>&quot;bust=RANDOM_INTEGER&quot;</code> to the URI.</p>
             <h2>Output:</h2>
             <div id="output" style="border:1px solid #ccc; background:#f5f5f5; padding:10px 20px"></div>
         </div>
@@ -23,11 +24,13 @@
                 }
             });
 
-            require(['json!data/foo.json'], function(foo){
+            // adding the flag `!bust` to the end of dependency name will avoid caching
+            require(['json!data/foo.json', 'json!data/bar.json!bust'], function(foo, bar){
                 var out = document.getElementById('output');
                 //data is parsed into an object
                 out.innerHTML += '<p><b>lorem:<\/b> '+ foo.lorem +'<\/p>';
                 out.innerHTML += '<p><b>bar:<\/b> '+ foo.bar +'<\/p>';
+                out.innerHTML += '<p><b>message:<\/b> '+ bar.text +'<\/p>';
             });
         </script>
     </body>
