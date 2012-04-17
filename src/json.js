@@ -2,7 +2,7 @@
  * RequireJS plugin for loading JSON files
  * - depends on Text plugin and it was HEAVILY "inspired" by it as well.
  * Author: Miller Medeiros
- * Version: 0.2.0 (2012/04/17)
+ * Version: 0.2.1 (2012/04/17)
  * Released under the MIT license
  */
 define(
@@ -37,19 +37,19 @@ define(
 
         load : function(name, req, onLoad, config) {
     //>>excludeStart('excludeJSON', pragmas.excludeJSON)
-            text.get(req.toUrl(name), function(data){
-                if (config.isBuild) {
-                    if ( config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1) {
-                        //avoid inlining cache busted JSON or if inlineJSON:false
-                        onLoad(null);
-                    } else {
+            if ( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1) ) {
+                //avoid inlining cache busted JSON or if inlineJSON:false
+                onLoad(null);
+            } else {
+                text.get(req.toUrl(name), function(data){
+                    if (config.isBuild) {
                         buildMap[name] = data;
                         onLoad(data);
+                    } else {
+                        onLoad(jsonParse(data));
                     }
-                } else {
-                    onLoad(jsonParse(data));
-                }
-            });
+                });
+            }
         },
 
         normalize : function (name, normalize) {
