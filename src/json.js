@@ -5,18 +5,7 @@
  * Version: 0.2.1 (2012/04/17)
  * Released under the MIT license
  */
-define(
-    [
-    //>>excludeStart('excludeJSON', pragmas.excludeJSON)
-       'text'
-    //>>excludeEnd('excludeJSON')
-    ],
-    function(
-    //>>excludeStart('excludeJSON', pragmas.excludeJSON)
-        text
-    //>>excludeEnd('excludeJSON')
-    ){
-    //>>excludeStart('excludeJSON', pragmas.excludeJSON)
+define(['text'], function(text){
 
     var CACHE_BUST_QUERY_PARAM = 'bust',
         CACHE_BUST_FLAG = '!bust',
@@ -31,12 +20,10 @@ define(
         return url + CACHE_BUST_QUERY_PARAM +'='+ Math.round(2147483647 * Math.random());
     }
 
-    //>>excludeEnd('excludeJSON')
     //API
     return {
 
         load : function(name, req, onLoad, config) {
-    //>>excludeStart('excludeJSON', pragmas.excludeJSON)
             if ( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1) ) {
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 onLoad(null);
@@ -64,7 +51,6 @@ define(
                 var content = buildMap[moduleName];
                 write('define("'+ pluginName +'!'+ moduleName +'", function(){ return '+ content +';});\n');
             }
-    //>>excludeEnd('excludeJSON')
         }
 
     };
