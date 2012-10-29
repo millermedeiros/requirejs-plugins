@@ -35,7 +35,9 @@ define(['text'], function(text){
                     } else {
                         onLoad(jsonParse(data));
                     }
-                });
+                },
+                  onLoad.error
+                );
             }
         },
 
