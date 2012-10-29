@@ -2,7 +2,7 @@
  * RequireJS plugin for loading JSON files
  * - depends on Text plugin and it was HEAVILY "inspired" by it as well.
  * Author: Miller Medeiros
- * Version: 0.2.1 (2012/04/17)
+ * Version: 0.3.0 (2012/10/29)
  * Released under the MIT license
  */
 define(['text'], function(text){
@@ -35,7 +35,9 @@ define(['text'], function(text){
                     } else {
                         onLoad(jsonParse(data));
                     }
-                });
+                },
+                  onLoad.error
+                );
             }
         },
 
