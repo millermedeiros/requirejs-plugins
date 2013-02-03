@@ -36,7 +36,9 @@ define(['text'], function(text){
                         onLoad(jsonParse(data));
                     }
                 },
-                  onLoad.error
+                    onLoad.error, {
+                        accepts: 'application/json'
+                    }
                 );
             }
         },
