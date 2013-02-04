@@ -37,7 +37,7 @@ define(['text'], function(text){
                     }
                 },
                     onLoad.error, {
-                        accepts: 'application/json'
+                        accept: 'application/json'
                     }
                 );
             }
