@@ -25,6 +25,9 @@ define(function(){
                 onLoad(null); //avoid errors on the optimizer since it can't inline image files
             }else{
                 img = new Image();
+		img.onerror = function (err) {
+		    onLoad.error(err);
+		};
                 img.onload = function(evt){
                     onLoad(img);
                     try {
