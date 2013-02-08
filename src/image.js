@@ -1,7 +1,7 @@
 /** @license
  * RequireJS Image Plugin
  * Author: Miller Medeiros
- * Version: 0.2.1 (2011/12/15)
+ * Version: 0.2.2 (2013/02/08)
  * Released under the MIT license
  */
 define(function(){
