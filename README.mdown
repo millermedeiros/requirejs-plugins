@@ -77,6 +77,22 @@ define([
 ```
 
 
+## Removing plugin code after build
+
+[r.js](https://github.com/jrburke/r.js/blob/master/build/example.build.js)
+nowadays have the `stubModules` setting which can be used to remove the whole
+plugin code:
+
+```js
+({
+    // will remove whole source code of "json" and "text" plugins during build
+    // JSON/text files that are bundled during build will still work fine but
+    // you won't be able to load JSON/text files dynamically after build
+    stubModules : ['json', 'text']
+})
+```
+
+
 ## Notes about the Markdown plugin
 
 The Markdown plugin was created mainly to be used to compile the markdown files
