@@ -1,0 +1,21 @@
+{
+  "name": "requirejs-plugins",
+  "version": "1.0.0",
+  "main": [
+    "src/async.js",
+    "src/depend.js",
+    "src/font.js",
+    "src/goog.js",
+    "src/image.js",
+    "src/json.js",
+    "src/mdown.js",
+    "src/noext.js",
+    "src/propertyParser.js",
+    "lib/Markdown.Converter.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
