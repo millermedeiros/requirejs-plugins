@@ -44,14 +44,14 @@ file) or create an alias to the plugin location:
 require.config({
     paths : {
         //create alias to plugins (not needed if plugins are on the baseUrl)
-        async: 'lib/requirejs-plugins/async',
-        font: 'lib/requirejs-plugins/font',
-        goog: 'lib/requirejs-plugins/goog',
-        image: 'lib/requirejs-plugins/image',
-        json: 'lib/requirejs-plugins/json',
-        noext: 'lib/requirejs-plugins/noext',
-        mdown: 'lib/requirejs-plugins/mdown',
-        propertyParser : 'lib/requirejs-plugins/propertyParser',
+        async: 'lib/require/async',
+        font: 'lib/require/font',
+        goog: 'lib/require/goog',
+        image: 'lib/require/image',
+        json: 'lib/require/json',
+        noext: 'lib/require/noext',
+        mdown: 'lib/require/mdown',
+        propertyParser : 'lib/require/propertyParser',
         markdownConverter : 'lib/Markdown.Converter'
     }
 });
