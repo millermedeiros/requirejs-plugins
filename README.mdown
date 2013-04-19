@@ -10,8 +10,6 @@ For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wik
 ## Plugins
 
  - **async** : Useful for JSONP and asynchronous dependencies (e.g. Google Maps).
- - **depend** : Load JS files that have dependencies but aren't wrapped into
-   `define` calls.
  - **font** : Load web fonts using the [WebFont Loader API](https://code.google.com/apis/webfonts/docs/webfont_loader.html)
    (requires `propertyParser`)
  - **goog** : Load [Google APIs](http://code.google.com/apis/loader/)
@@ -47,7 +45,6 @@ require.config({
     paths : {
         //create alias to plugins (not needed if plugins are on the baseUrl)
         async: 'lib/requirejs-plugins/async',
-        depend: 'lib/requirejs-plugins/depend',
         font: 'lib/requirejs-plugins/font',
         goog: 'lib/requirejs-plugins/goog',
         image: 'lib/requirejs-plugins/image',
@@ -68,8 +65,7 @@ define([
         'async!http://maps.google.com/maps/api/js?sensor=false',
         'goog!visualization,1,packages:[corechart,geochart]',
         'goog!search,1',
-        'font!google,families:[Tangerine,Cantarell]',
-        'depend!foo[order!jquery,order!lib/awsumJqueryPlugin]'
+        'font!google,families:[Tangerine,Cantarell]'
     ], function(awsum, foo, bar, loremIpsum){
         //all dependencies are loaded (including gmaps and other google apis)
     }
