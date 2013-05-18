@@ -11,7 +11,8 @@
     "src/mdown.js",
     "src/noext.js",
     "src/propertyParser.js",
-    "lib/Markdown.Converter.js"
+    "lib/Markdown.Converter.js",
+    "lib/text.js"
   ],
   "ignore": [
     "**/.*",
