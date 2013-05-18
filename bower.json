@@ -1,6 +1,6 @@
 {
   "name": "requirejs-plugins",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": [
     "src/async.js",
     "src/depend.js",
@@ -11,7 +11,8 @@
     "src/mdown.js",
     "src/noext.js",
     "src/propertyParser.js",
-    "lib/Markdown.Converter.js"
+    "lib/Markdown.Converter.js",
+    "lib/text.js"
   ],
   "ignore": [
     "**/.*",
