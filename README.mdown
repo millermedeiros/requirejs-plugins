@@ -6,6 +6,15 @@ also work on other AMD loaders (never tested it).
 For more plugins check [RequireJS Wiki](https://github.com/jrburke/requirejs/wiki/Plugins).
 
 
+## Install
+
+You can use [bower](http://bower.io/) to install it easily:
+
+```
+bower install --save requirejs-plugins
+```
+
+
 
 ## Plugins
 
