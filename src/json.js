@@ -44,8 +44,12 @@ define(['text'], function(text){
         },
 
         normalize : function (name, normalize) {
-            //used normalize to avoid caching references to a "cache busted" request
-            return (name.indexOf(CACHE_BUST_FLAG) === -1)? name : cacheBust(name);
+            // used normalize to avoid caching references to a "cache busted" request
+            if (name.indexOf(CACHE_BUST_FLAG) !== -1) {
+                name = cacheBust(name);
+            }
+            // resolve any relative paths
+            return normalize(name);
         },
 
         //write method based on RequireJS official text plugin by James Burke
