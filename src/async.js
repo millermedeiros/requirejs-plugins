@@ -37,7 +37,7 @@ define(function(){
                 //create a global variable that stores onLoad so callback
                 //function can define new module after async load
                 window[id] = onLoad;
-                injectScript(formatUrl(name, id));
+                injectScript(formatUrl(req.toUrl(name), id));
             }
         }
     };
