@@ -23,17 +23,28 @@ define(function(){
         return url + param +'='+ id;
     }
 
-    function uid() {
-        _uid += 1;
-        return '__async_req_'+ _uid +'__';
+    function parse(name) {
+        var parts = name.split(':');
+        return parts[1];
+    }
+
+    function uid(name) {
+        var glob = parse(name);
+        if(glob === undefined) {
+            _uid += 1;
+            return '__async_req_'+ _uid +'__';
+        } else {
+            return glob;
+        }
     }
 
     return{
         load : function(name, req, onLoad, config){
+
             if(config.isBuild){
                 onLoad(null); //avoid errors on the optimizer
             }else{
-                var id = uid();
+                var id = uid(name);
                 //create a global variable that stores onLoad so callback
                 //function can define new module after async load
                 window[id] = onLoad;
