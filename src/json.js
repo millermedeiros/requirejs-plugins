@@ -24,6 +24,10 @@ define(['text'], function(text){
     return {
 
         load : function(name, req, onLoad, config) {
+            // Make sure file part of url ends with .json, add it if not
+            name = name.replace(new RegExp("^[^?]*"),function(base){
+                return base.substr(-5) === ".json" ? base : base+".json";
+            });
             if ( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1) ) {
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 onLoad(null);
