@@ -27,6 +27,9 @@ define(['text'], function(text){
             if ( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1) ) {
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 onLoad(null);
+            } else if ( req.toUrl(name) === 'empty:' ) {
+                //avoid loading empty: urls
+                onLoad(null);
             } else {
                 text.get(req.toUrl(name), function(data){
                     if (config.isBuild) {
