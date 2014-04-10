@@ -24,12 +24,14 @@ define(['text'], function(text){
     return {
 
         load : function(name, req, onLoad, config) {
+            var url = req.toUrl(name);
+            
             if (( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1)) || (url.indexOf('empty:') === 0)) {
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 //and don't inline files marked as empty!
                 onLoad(null);
             } else {
-                text.get(req.toUrl(name), function(data){
+                text.get(url, function(data){
                     if (config.isBuild) {
                         buildMap[name] = data;
                         onLoad(data);
