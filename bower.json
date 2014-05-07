@@ -1,6 +1,6 @@
 {
   "name": "requirejs-plugins",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": [
     "src/async.js",
     "src/depend.js",
