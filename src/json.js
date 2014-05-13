@@ -4,6 +4,9 @@
  * Author: Miller Medeiros
  * Version: 0.4.0 (2014/04/10)
  * Released under the MIT license
+ * 
+ * Patched (2013/10/10):
+ * - supports JS-like comments which are beginning from /* or //
  */
 define(['text'], function(text){
 
@@ -30,6 +33,7 @@ define(['text'], function(text){
                 onLoad(null);
             } else {
                 text.get(req.toUrl(name), function(data){
+                    data = data.replace(/\/\*.+?\*\/|\/\/.*(?=[\n\r])/g, '');
                     if (config.isBuild) {
                         buildMap[name] = data;
                         onLoad(data);
