@@ -12,6 +12,7 @@ define(['text'], function(text){
         jsonParse = (typeof JSON !== 'undefined' && typeof JSON.parse === 'function')? JSON.parse : function(val){
             return eval('('+ val +')'); //quick and dirty
         },
+        PROTECTION_PREFIX = /^\)\]\}',?\n/,
         buildMap = {};
 
     function cacheBust(url){
@@ -34,6 +35,8 @@ define(['text'], function(text){
                         buildMap[name] = data;
                         onLoad(data);
                     } else {
+                        // Need to check if the JSON data has been formatted for the JSON array security vulnerability
+                        data = data.replace(PROTECTION_PREFIX, '');
                         onLoad(jsonParse(data));
                     }
                 },
