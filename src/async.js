@@ -33,11 +33,20 @@ define(function(){
             if(config.isBuild){
                 onLoad(null); //avoid errors on the optimizer
             }else{
-                var id = uid();
+                var id = uid(),
+                    url = req.toUrl(name),
+                    urlArgs = config.urlArgs || '',
+                    urlArgsRe;
+
+                if(config.urlArgs) {
+                    urlArgsRe = new RegExp('(\\?|&)' + config.urlArgs);
+                    url = url.replace(urlArgsRe, '');
+                }
+
                 //create a global variable that stores onLoad so callback
                 //function can define new module after async load
                 window[id] = onLoad;
-                injectScript(formatUrl(req.toUrl(name), id));
+                injectScript(formatUrl(url, id) + '&' + urlArgs);
             }
         }
     };
