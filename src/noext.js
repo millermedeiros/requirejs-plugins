@@ -10,10 +10,16 @@ define(function(){
 
     var QUERY_PARAM = 'noext';
 
+    var splitter = function() {
+        return window.__karma__
+            ? function (name) { return name.split('?')[0]; }
+            : function (name) { return name; }
+    }();
+
     //API
     return {
         load : function(name, req, onLoad, config){
-            req([req.toUrl(name)], function(mod){
+            req([req.toUrl(splitter(name))], function(mod){
                 onLoad(mod);
             });
         },
