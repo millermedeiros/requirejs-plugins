@@ -30,7 +30,7 @@ define(function(){
 
     return{
         load : function(name, req, onLoad, config){
-            if(config.isBuild){
+            if(config && config.isBuild){
                 onLoad(null); //avoid errors on the optimizer
             }else{
                 var id = uid();

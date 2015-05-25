@@ -24,7 +24,7 @@ define(['text'], function(text){
     return {
 
         load : function(name, req, onLoad, config) {
-            if (( config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM +'=') !== -1)) || (req.toUrl(name).indexOf('empty:') === 0)) {
+            if (( config && config.isBuild && (config.inlineJSON === false || name.indexOf(CACHE_BUST_QUERY_PARAM + '=') !== -1)) || (req.toUrl(name).indexOf('empty:') === 0)) {
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 //and don't inline files marked as empty!
                 onLoad(null);
