@@ -33,7 +33,7 @@ define(
 //>>excludeStart('excludeMdown', pragmas.excludeMdown)
                 text.get(req.toUrl(name), function(data){
                     data = markdownConverter.makeHtml(data);
-                    if (config.isBuild) {
+                    if (config && config.isBuild) {
                         buildMap[name] = data;
                         onLoad(data);
                     } else {

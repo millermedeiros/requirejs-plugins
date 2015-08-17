@@ -21,7 +21,7 @@ define(function(){
     return {
         load : function(name, req, onLoad, config){
             var img;
-            if(config.isBuild){
+            if(config && config.isBuild) {
                 onLoad(null); //avoid errors on the optimizer since it can't inline image files
             }else{
                 img = new Image();
