@@ -16,9 +16,10 @@ define(function(){
     }
 
     function formatUrl(name, id){
-        var paramRegex = /!(.+)/,
+        var paramRegex = /!([^?]+)/,
             url = name.replace(paramRegex, ''),
-            param = (paramRegex.test(name))? name.replace(/.+!/, '') : DEFAULT_PARAM_NAME;
+            match = paramRegex.exec(name),
+            param = (match != null) ? match[1] : DEFAULT_PARAM_NAME;
         url += (url.indexOf('?') < 0)? '?' : '&';
         return url + param +'='+ id;
     }
