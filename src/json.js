@@ -31,13 +31,19 @@ define(['text'], function(text){
                 onLoad(null);
             } else {
                 text.get(req.toUrl(name), function(data){
+                    var parsed;
                     if (config.isBuild) {
                         buildMap[name] = data;
                         onLoad(data);
                     } else {
                         // Need to check if the JSON data has been formatted for the JSON array security vulnerability
-                        data = data.replace(PROTECTION_PREFIX, '');
-                        onLoad(jsonParse(data));
+                        try {
+                            data = data.replace(PROTECTION_PREFIX, '');
+                            parsed = jsonParse(data);
+                        } catch (e) {
+                            onLoad.error(e);
+                        }
+                        onLoad(parsed);
                     }
                 },
                     onLoad.error, {
