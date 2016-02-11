@@ -6,7 +6,7 @@
  */
 define(['propertyParser'], function (propertyParser) {
 
-    var rParts = /^([^,]+),([^\|]+)\|?/;
+    var rParts = /^([^,]+),([^\|]+)\|?/i;
 
     function parseName(name) {
         var data = {},
@@ -29,12 +29,21 @@ define(['propertyParser'], function (propertyParser) {
             if (config.isBuild) {
                 onLoad(null); //avoid errors on the optimizer
             } else {
-                var data = parseName(name);
+                var data = parseName(name),
+                    fontLoaderVersion = '1.5'; // Available versions listed at
+                                               // https://developers.google.com/speed/libraries/#web-font-loader
+
                 data.active = onLoad;
                 data.inactive = function(){
                     onLoad(false);
                 };
-                req([(document.location.protocol === 'https:'? 'https' : 'http') +'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'], function(){
+
+                if (config && config.fontLoaderVersion !== undefined) {
+                    fontLoaderVersion = config.fontLoaderVersion;
+                }
+
+                 req([(document.location.protocol === 'https:'? 'https' : 'http') +
+                    '://ajax.googleapis.com/ajax/libs/webfont/' + fontLoaderVersion +'/webfont.js'], function(){
                     WebFont.load(data);
                 });
             }
