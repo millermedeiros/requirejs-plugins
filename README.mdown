@@ -1,5 +1,7 @@
 # RequireJS plugins
 
+[![CDNJS](https://img.shields.io/cdnjs/v/requirejs-plugins.svg)](https://cdnjs.com/libraries/requirejs-plugins)
+
 Small set of plugins for [RequireJS](http://requirejs.org). Some plugins may
 also work on other AMD loaders (never tested it).
 
