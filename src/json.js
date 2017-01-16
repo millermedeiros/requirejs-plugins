@@ -28,6 +28,9 @@ define(['text'], function(text){
                 //avoid inlining cache busted JSON or if inlineJSON:false
                 //and don't inline files marked as empty!
                 onLoad(null);
+            } else if ( req.toUrl(name) === 'empty:' ) {
+                //avoid loading empty: urls
+                onLoad(null);
             } else {
                 text.get(req.toUrl(name), function(data){
                     var parsed;
