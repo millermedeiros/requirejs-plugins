@@ -1,0 +1,19 @@
+{
+  "name": "requirejs-plugins-current",
+  "version": "1.0.3",
+  "description": "Small set of plugins for RequireJS (http://requirejs.org). Some plugins may also work on other AMD loaders (never tested it). For more plugins check RequireJS Wiki (https://github.com/jrburke/requirejs/wiki/Plugins). Note: this is a fork of the original requirejs-plugins repository, which only adds the package.json to make it installable via npm.",
+  "keywords": ["require", "requirejs", "plugins", "node"],
+  "license": "MIT",
+  "homepage": "https://github.com/jauernigit/requirejs-plugins-current",
+  "author": "Miller Medeiros (http://blog.millermedeiros.com)",
+  "contributors": [
+    "Matthias Jauernig <matthias@jauernig-it.de> (http://www.jauernig-it.de)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jauernigit/requirejs-plugins-current.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jauernigit/requirejs-plugins-current/issues"
+  }
+}
