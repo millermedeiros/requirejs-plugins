@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "main": [
     "src/async.js",
+    "src/css.js",
     "src/depend.js",
     "src/font.js",
     "src/goog.js",

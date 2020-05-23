@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+.example {
+    width: 256px;
+    height: 256px;
+}
+.example div {
+    position: relative;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 8px;
+}
+.example > div { background: rgb(0 , 0, 0); }
+.example > div > div { background: rgb(16 , 16, 16); }
+.example > div > div > div { background: rgb(32 , 32, 32); }
+.example > div > div > div > div { background: rgb(48 , 48, 48); }
+.example > div > div > div > div > div { background: rgb(64 , 64, 64); }
+.example > div > div > div > div > div > div { background: rgb(80 , 80, 80); }
+.example > div > div > div > div > div > div > div { background: rgb(96 , 96, 96); }
+.example > div > div > div > div > div > div > div > div { background: rgb(112 , 112, 112); }
+.example > div > div > div > div > div > div > div > div > div { background: rgb(128 , 128, 128); }
+.example > div > div > div > div > div > div > div > div > div > div { background: rgb(144 , 144, 144); }
+.example > div > div > div > div > div > div > div > div > div > div > div { background: rgb(160 , 160, 160); }
+.example > div > div > div > div > div > div > div > div > div > div > div > div { background: rgb(176 , 176, 176); }
+.example > div > div > div > div > div > div > div > div > div > div > div > div > div { background: rgb(192 , 192, 192); }
+.example > div > div > div > div > div > div > div > div > div > div > div > div > div > div { background: rgb(208 , 208, 208); }
+.example > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div { background: rgb(224 , 224, 224); }
+.example > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div > div { background: rgb(240 , 240, 240); }

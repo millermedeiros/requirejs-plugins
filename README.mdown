@@ -19,6 +19,7 @@ bower install --save requirejs-plugins
 ## Plugins
 
  - **async** : Useful for JSONP and asynchronous dependencies (e.g. Google Maps).
+ - **css**: Load css files.
  - **font** : Load web fonts using the [WebFont Loader API](https://code.google.com/apis/webfonts/docs/webfont_loader.html)
    (requires `propertyParser`)
  - **goog** : Load [Google APIs](http://code.google.com/apis/loader/)
@@ -54,6 +55,7 @@ require.config({
     paths : {
         //create alias to plugins (not needed if plugins are on the baseUrl)
         async: 'lib/require/async',
+        css: 'lib/require/css',
         font: 'lib/require/font',
         goog: 'lib/require/goog',
         image: 'lib/require/image',
@@ -74,7 +76,8 @@ define([
         'async!http://maps.google.com/maps/api/js?sensor=false',
         'goog!visualization,1,packages:[corechart,geochart]',
         'goog!search,1',
-        'font!google,families:[Tangerine,Cantarell]'
+        'font!google,families:[Tangerine,Cantarell]',
+        'css!file.css',
     ], function(awsum, foo, bar, loremIpsum){
         //all dependencies are loaded (including gmaps and other google apis)
     }
