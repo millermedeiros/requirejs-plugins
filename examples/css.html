@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>RequireJS css plugin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div id="wrapper">
+            <h1>RequireJS css plugin</h1>
+            <h2>Notes:</h2>
+            <ul>
+                <li>CSS paths are relative to the HTML file by default.</li>
+                <li>Support absolute paths as well.</li>
+            </ul>
+            <hr />
+            <div class="example"><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div><div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div></div>
+        </div>
+        <script src="../lib/require.js"></script>
+        <script>
+            require.config({
+                paths : {
+                    css : '../src/css' //alias to plugin
+                }
+            });
+            require(['css!css/example.css']);
+        </script>
+    </body>
+</html>
