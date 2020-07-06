@@ -4,17 +4,16 @@
  * Version: 0.2.0 (2011/12/06)
  * Released under the MIT license
  */
-define(['async', 'propertyParser'], function (async, propertyParser) {
+define(['propertyParser'], function (propertyParser) {
 
     var rParts = /^([^,]+)(?:,([^,]+))?(?:,(.+))?/;
 
     function parseName(name){
         var match = rParts.exec(name),
             data = {
-                moduleName : match[1],
-                version : match[2] || '1'
+                version : match[1] || '1'
             };
-        data.settings = propertyParser.parseProperties(match[3]);
+        data.settings = propertyParser.parseProperties(match[2]);
         return data;
     }
 
@@ -28,8 +27,8 @@ define(['async', 'propertyParser'], function (async, propertyParser) {
 
                 settings.callback = onLoad;
 
-                req(['async!'+ (document.location.protocol === 'https:'? 'https' : 'http') +'://www.google.com/jsapi'], function(){
-                    google.load(data.moduleName, data.version, settings);
+                req([(document.location.protocol === 'https:'? 'https' : 'http') +'://www.gstatic.com/charts/loader.js'], function(){
+                    google.charts.load(data.version, settings);
                 });
             }
         }
